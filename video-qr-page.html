@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Video QR Code with Download</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+    canvas { margin: 20px 0; }
+    button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>Scan to Watch the Video</h1>
+  <p>The QR code below links to the video hosted on GitHub Pages:</p>
+  
+  <!-- QR code will appear here -->
+  <canvas id="qr-code"></canvas>
+  <br>
+  
+  <!-- Download button -->
+  <button id="download-btn">Download QR Code as PNG</button>
+
+  <script>
+    // 1️⃣ Generate QR code
+    var qr = new QRious({
+      element: document.getElementById('qr-code'),
+      value: 'https://htoohe.github.io/My-site/Fun.mp4', // သင့် video URL
+      size: 300
+    });
+
+    // 2️⃣ Download functionality
+    document.getElementById('download-btn').addEventListener('click', function() {
+      var link = document.createElement('a');
+      link.href = qr.toDataURL();       // QR code ကို PNG data URL အဖြစ်ပြောင်း
+      link.download = 'video-qr.png';   // Save file name
+      link.click();
+    });
+  </script>
+</body>
+</html>
